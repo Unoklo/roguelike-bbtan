@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roguelike BBTAN</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- PANTALLA DE MAPA -->
+    <div id="map-screen" class="screen active">
+      <canvas id="map-canvas" width="520" height="800"></canvas>
+    </div>
+
+    <!-- PANTALLA DE COMBATE -->
+    <div id="combat-screen" class="screen">
+      <div id="hud">
+        <div class="stat">
+          <span class="label">ESENCIA</span>
+          <span class="value" id="essenceValue">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">TURNO</span>
+          <span class="value" id="turnValue">1/12</span>
+        </div>
+        <div class="stat">
+          <span class="label">BOLAS</span>
+          <span class="value" id="ballsValue">3</span>
+        </div>
+      </div>
+      <canvas id="game"></canvas>
+      <div id="paddleHint">Arrastra para apuntar · suelta para disparar</div>
+    </div>
+
+    <!-- PANTALLA DE TIENDA -->
+    <div id="shop-screen" class="screen">
+      <div id="shop-hud" class="shop-hud">
+        <h2>⚔️ TIENDA MÍSTICA</h2>
+        <p class="gold-display">Oro: <span id="shop-gold">0</span></p>
+      </div>
+      <div id="shop-items" class="shop-items"></div>
+      <button id="shop-exit" class="btn-primary">Volver al Mapa</button>
+    </div>
+
+    <!-- OVERLAY DE FIN DE JUEGO -->
+    <div id="overlay">
+      <h1 id="overlayTitle">Derrota</h1>
+      <p id="overlayText">Un bloque alcanzó el launcher.</p>
+      <button id="restartBtn" class="btn-primary">Reintentar</button>
+      <button id="reviveBtn" class="btn-secondary" style="display:none;">Ver anuncio para revivir</button>
+      <button id="menuBtn" class="btn-secondary">Volver al Mapa</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="persistence.js"></script>
+  <script src="map.js"></script>
+  <script src="game.js"></script>
+  <script src="shop.js"></script>
+</body>
+</html>
