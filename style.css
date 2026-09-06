@@ -1,0 +1,301 @@
+/* style.css - Estilos completos para Roguelike BBTAN */
+
+:root {
+  --bg-deep: #12111a;
+  --line-danger: #e5484d;
+  --ball-core: #f5a94e;
+  --text-main: #ece8f2;
+  --text-dim: #8b87a0;
+  --accent-essence: #7fd992;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-main);
+  touch-action: none;
+  user-select: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  background: var(--bg-deep);
+}
+
+/* ===== PANTALLAS ===== */
+.screen {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ===== PANTALLA DE MAPA ===== */
+#map-screen {
+  background: var(--bg-deep);
+}
+
+#map-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  touch-action: none;
+}
+
+/* ===== PANTALLA DE COMBATE ===== */
+#combat-screen {
+  background: var(--bg-deep);
+}
+
+#hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px 10px 18px;
+  z-index: 5;
+  gap: 12px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat .label {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+}
+
+.stat .value {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#essenceValue {
+  color: var(--accent-essence);
+}
+
+#ballsValue {
+  color: var(--ball-core);
+}
+
+#game {
+  display: block;
+  width: 100%;
+  flex: 1;
+  touch-action: none;
+}
+
+#paddleHint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  padding: 6px 0 12px 0;
+  letter-spacing: 0.01em;
+}
+
+/* ===== PANTALLA DE TIENDA ===== */
+#shop-screen {
+  background: var(--bg-deep);
+  padding: 20px;
+  gap: 20px;
+}
+
+.shop-hud {
+  text-align: center;
+  color: var(--text-main);
+}
+
+.shop-hud h2 {
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.gold-display {
+  font-size: 18px;
+  color: var(--ball-core);
+  margin: 0;
+}
+
+.shop-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.shop-item {
+  background: rgba(139, 135, 160, 0.1);
+  border: 2px solid rgba(139, 135, 160, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.shop-item:hover {
+  background: rgba(139, 135, 160, 0.2);
+  border-color: var(--ball-core);
+  transform: translateY(-2px);
+}
+
+.shop-item-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.shop-item-rarity {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.shop-item-cost {
+  font-size: 13px;
+  color: var(--ball-core);
+  font-weight: 700;
+}
+
+.shop-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.shop-item.disabled:hover {
+  background: rgba(139, 135, 160, 0.1);
+  border-color: rgba(139, 135, 160, 0.3);
+  transform: none;
+}
+
+/* ===== OVERLAY ===== */
+#overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(18, 17, 26, 0.92);
+  z-index: 20;
+  text-align: center;
+  padding: 24px;
+}
+
+#overlay h1 {
+  font-size: 26px;
+  margin: 0;
+  font-weight: 800;
+}
+
+#overlay p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 14px;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* ===== BOTONES ===== */
+.btn-primary,
+.btn-secondary,
+#restartBtn,
+#reviveBtn,
+#menuBtn,
+#shop-exit {
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary,
+#restartBtn,
+#shop-exit {
+  background: var(--ball-core);
+  color: #1c1204;
+}
+
+.btn-primary:active,
+#restartBtn:active,
+#shop-exit:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary,
+#reviveBtn,
+#menuBtn {
+  background: rgba(139, 135, 160, 0.2);
+  color: var(--text-main);
+  border: 1px solid rgba(139, 135, 160, 0.4);
+}
+
+.btn-secondary:hover,
+#reviveBtn:hover,
+#menuBtn:hover {
+  background: rgba(139, 135, 160, 0.3);
+  border-color: rgba(139, 135, 160, 0.6);
+}
+
+.btn-secondary:active,
+#reviveBtn:active,
+#menuBtn:active {
+  transform: scale(0.97);
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-height: 600px) {
+  #hud {
+    padding: 10px 14px 8px 14px;
+  }
+
+  .stat .label {
+    font-size: 9px;
+  }
+
+  .stat .value {
+    font-size: 16px;
+  }
+
+  #paddleHint {
+    font-size: 11px;
+    padding: 4px 0 8px 0;
+  }
+}
