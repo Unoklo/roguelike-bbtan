@@ -1,6 +1,3 @@
-// persistence.js
-// Sistema de guardado en localStorage para runs persistentes
-
 window.PERSISTENCE = {
   KEYS: {
     CURRENT_RUN: 'bbtan_current_run',
@@ -8,7 +5,6 @@ window.PERSISTENCE = {
     SETTINGS: 'bbtan_settings'
   },
 
-  // Crear una nueva run
   createNewRun() {
     const run = {
       id: Date.now(),
@@ -21,7 +17,7 @@ window.PERSISTENCE = {
       ballCount: window.GAME_CONFIG.STARTING_BALLS,
       activeTrinkets: [],
       unlockedSkills: [],
-      nodeStates: {}, // { nodeId: 'pending' | 'won' | 'lost' | 'shop' }
+      nodeStates: {},
       totalNodesCompleted: 0,
       lives: 1
     };
@@ -29,43 +25,51 @@ window.PERSISTENCE = {
     return run;
   },
 
-  // Obtener run actual
   getCurrentRun() {
-    const data = localStorage.getItem(this.KEYS.CURRENT_RUN);
-    return data ? JSON.parse(data) : null;
+    try {
+      const data = localStorage.getItem(this.KEYS.CURRENT_RUN);
+      return data ? JSON.parse(data) : null;
+    } catch (error) {
+      console.warn('No se pudo leer la run actual', error);
+      return null;
+    }
   },
 
-  // Guardar run actual
   saveCurrentRun(run) {
-    localStorage.setItem(this.KEYS.CURRENT_RUN, JSON.stringify(run));
+    try {
+      localStorage.setItem(this.KEYS.CURRENT_RUN, JSON.stringify(run));
+    } catch (error) {
+      console.warn('No se pudo guardar la run actual', error);
+    }
   },
 
-  // Finalizar run (guardar en historial)
   finishRun(run, result) {
     run.finishedAt = new Date().toISOString();
-    run.result = result; // 'completed' | 'gameover'
+    run.result = result;
     run.finalStats = {
       totalGold: run.gold,
       totalEssence: run.essence,
       nodesCleared: run.totalNodesCompleted,
       skillPointsUsed: run.unlockedSkills.length
     };
-    
+
     const history = this.getRunsHistory();
     history.push(run);
     localStorage.setItem(this.KEYS.RUNS_HISTORY, JSON.stringify(history));
     localStorage.removeItem(this.KEYS.CURRENT_RUN);
-    
     return run;
   },
 
-  // Obtener historial de runs
   getRunsHistory() {
-    const data = localStorage.getItem(this.KEYS.RUNS_HISTORY);
-    return data ? JSON.parse(data) : [];
+    try {
+      const data = localStorage.getItem(this.KEYS.RUNS_HISTORY);
+      return data ? JSON.parse(data) : [];
+    } catch (error) {
+      console.warn('No se pudo leer el historial', error);
+      return [];
+    }
   },
 
-  // Limpiar run actual (para empezar una nueva)
   clearCurrentRun() {
     localStorage.removeItem(this.KEYS.CURRENT_RUN);
   }
