@@ -8,12 +8,10 @@
 </head>
 <body>
   <div id="app">
-    <!-- PANTALLA DE MAPA -->
     <div id="map-screen" class="screen active">
       <canvas id="map-canvas" width="520" height="800"></canvas>
     </div>
 
-    <!-- PANTALLA DE COMBATE -->
     <div id="combat-screen" class="screen">
       <div id="hud">
         <div class="stat">
@@ -33,7 +31,6 @@
       <div id="paddleHint">Arrastra para apuntar · suelta para disparar</div>
     </div>
 
-    <!-- PANTALLA DE TIENDA -->
     <div id="shop-screen" class="screen">
       <div id="shop-hud" class="shop-hud">
         <h2>⚔️ TIENDA MÍSTICA</h2>
@@ -43,7 +40,6 @@
       <button id="shop-exit" class="btn-primary">Volver al Mapa</button>
     </div>
 
-    <!-- OVERLAY DE FIN DE JUEGO -->
     <div id="overlay">
       <h1 id="overlayTitle">Derrota</h1>
       <p id="overlayText">Un bloque alcanzó el launcher.</p>
@@ -53,9 +49,10 @@
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="config.js"></script>
   <script src="persistence.js"></script>
+  <script src="ui.js"></script>
+  <script src="skills.js"></script>
   <script src="map.js"></script>
   <script src="game.js"></script>
   <script src="shop.js"></script>
