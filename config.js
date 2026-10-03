@@ -66,23 +66,19 @@ window.GAME_CONFIG = {
   },
 
   SKILL_POOL: [
-    // COMÚN
     { name: 'Bolas +1', rarity: 'common', effect: 'ballCount', value: 1, description: 'Ganas 1 bola extra' },
     { name: 'Velocidad +10%', rarity: 'common', effect: 'ballSpeed', value: 1.10, description: 'Las bolas vuelan 10% más rápido' },
     { name: 'Esencia +5%', rarity: 'common', effect: 'essenceMultiplier', value: 1.05, description: 'Ganas 5% más esencia de bloques' },
 
-    // RARO
-    { name: 'Penetración', rarity: 'rare', effect: 'ballPenetration', value: true, description: 'Las bolas atraviesan bloques' },
+    { name: 'Penetración', rarity: 'rare', effect: 'ballPenetration', value: true, description: 'Las bolas atraviesan el primer bloque' },
     { name: 'Ricochete', rarity: 'rare', effect: 'ballRicochet', value: 2, description: 'Las bolas rebotan 2 veces más' },
     { name: 'Oro +15%', rarity: 'rare', effect: 'goldMultiplier', value: 1.15, description: 'Ganas 15% más oro' },
 
-    // ÉPICO
     { name: 'Bolas Dobles', rarity: 'epic', effect: 'doubleShot', value: true, description: 'Dispara 2 enjambres por turno' },
     { name: 'Escudo', rarity: 'epic', effect: 'shield', value: 1, description: 'Sobrevive 1 turno extra si un bloque cruza' },
 
-    // LEGENDARIO
     { name: 'Destrucción Total', rarity: 'legendary', effect: 'instantClear', value: 0.5, description: 'Cada 2 turnos, limpia la pantalla' },
-    { name: 'Inmortal', rarity: 'legendary', effect: 'immortal', value: 1, description: 'No puedes perder (1 vida)" }
+    { name: 'Inmortal', rarity: 'legendary', effect: 'immortal', value: 1, description: 'No puedes perder (1 vida)' }
   ],
 
   // --- TRINKETS (Objetos que dropean al superar nodos) ---
